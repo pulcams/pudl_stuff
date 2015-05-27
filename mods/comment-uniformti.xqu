@@ -1,0 +1,19 @@
+xquery version "1.0";
+
+(:~ 
+ : XQuery Update to comment out uniform titles with @altRepGroup to bypass pudl loading issue. 
+ : Wraps in <comment></comment> which then needs to be replaced with '<!--' and '-->' respectively.
+ :)
+  
+declare namespace mods="http://www.loc.gov/mods/v3";
+declare copy-namespaces no-preserve, inherit;
+
+declare variable $SOURCE as document-node()* := collection('/home/me/Projects/svn/pudl0112/?select=*.mods;recurse=no;on-error=ignore')/doc(document-uri(.));
+
+for $file in $SOURCE
+let $uniformti as element()? := $file//mods:titleInfo[@type='uniform'][position() = 1][@altRepGroup]
+return
+if ($uniformti) then (
+(:replace node $uniformti with:)
+    <comment>{$uniformti}</comment>
+) else()

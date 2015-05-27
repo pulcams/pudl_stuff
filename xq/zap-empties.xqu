@@ -1,0 +1,35 @@
+xquery version "1.0";
+
+(:
+ :  Template for querying project directories. 
+ :)
+
+declare namespace mods="http://www.loc.gov/mods/v3";
+declare namespace marc="http://www.loc.gov/MARC21/slim";
+declare namespace mets="http://www.loc.gov/METS/";
+
+declare variable $DIR as xs:string := 'file:///Users/me/Documents/working/pudl0125/';
+declare variable $TYPE as xs:string := 'mods';
+
+declare variable $FILE as document-node()* := collection(concat($DIR,'?select=*.',$TYPE,';recurse=yes;on-error=ignore'))/doc(document-uri(.));
+
+for $t in $FILE//*
+return
+(:if (($t/not(text()) and $t/not(comment())) or $t/not(node())) then :)
+if ($t/not(node())) then
+    <empty>{$t}</empty>
+    (:delete node $t:)
+else()
+
+(:if ($t/name() = 'mods:note' and $t[. eq '']) then
+    delete node $t
+else():)
+
+(:if ($t/name() = 'mods:name' and $t[not(mods:namePart[. ne ''])]) then
+     delete node $t
+else():)
+
+(:if ($t/name() = 'mods:namePart' and $t[. eq '']) then
+    <value>{$t}</value>     
+    (\:delete node $t:\)
+else():)

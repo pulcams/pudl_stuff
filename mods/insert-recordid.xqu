@@ -1,0 +1,51 @@
+xquery version "1.0";
+
+(:~ 
+ : XQuery Update to insert recordIds into MODS records.
+ : Comment operations as needed.
+ :)
+ 
+declare namespace mods="http://www.loc.gov/mods/v3";
+
+declare variable $COLLECTION as document-node()* := collection('file:///Users/me/Documents/working/svn/pudl0112/?select=*.mods;recurse=no;on-error=ignore')/doc(document-uri(.));
+
+for $file in $COLLECTION
+let $id := $file/document-uri(.)
+let $num := replace(tokenize($id,'/')[last()],'\.mods','')
+let $recinfo := $file//mods:recordInfo
+let $recid := $recinfo/mods:recordIdentifier
+let $newrecid as xs:string? := replace($recid/string(),'XXXX',$num)
+return
+
+(:~
+ : *******************************************
+ : Test
+ : *******************************************
+ :)
+<test>
+<old>{$recid/string()}</old>
+<new>{$newrecid}</new>
+</test>
+
+
+(:~
+ : *******************************************
+ : If mods:recordIdentifier already exists...
+ : *******************************************
+ :)
+ 
+(: replace value of node $recid with $newrecid :)
+
+(:~
+ : *******************************************
+ : If no mods:recordIdentifier...
+ : *******************************************
+ :)
+ 
+(:
+if (not(exists($recid))) then (
+insert node (
+     <mods:recordIdentifier>http://diglib.princeton.edu/mdata/pudl0112/{$num}.mods</mods:recordIdentifier>
+) as last into $recinfo
+) else()
+:)
