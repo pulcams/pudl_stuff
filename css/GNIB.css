@@ -1,0 +1,95 @@
+/* ******************************************************
+Styles for GNIB data entry. 10/2010 pg
+Associate with MODS document(s) while in text view,
+open in oXygen author view.
+********************************************************/
+
+/* global */
+* {
+    display: block;
+    background-color: #FFF;
+ }
+/* fields to be removed from display */
+physicalDescription,
+subject,
+location,
+classification,
+recordInfo,
+identifier,
+relatedItem,
+location,
+subLocation,
+genre,
+shelfLocator,
+place,
+accessCondition,
+typeOfResource,
+role,
+roleTerm,
+recordContentSource {
+    display: none;
+}
+/* fields to be edited */
+title,
+subTitle,
+namePart,
+dateCreated,
+publisher,
+place,
+languageTerm,
+note {
+    display: block;
+    margin: .5em;
+    font-size: 1em;
+    border: 2px inset #FFCC66;
+    color: #666;
+    background-color: #E8EEFA;
+    width: 450px;
+}
+/* background colors and text */
+namePart {
+    background-color: #FFEEBF;
+    content: "corporate name: ";
+}
+placeTerm {
+    background-color: #D1EFD8;
+    content: 'place: ';
+}
+languageTerm {
+    content: 'language: ';
+    background-color: #FFFFCF;
+}
+title {
+    content: "other title: ";
+}
+subTitle {
+    content: "other subtitle: ";
+}
+titleInfo:first-child > subTitle {
+    background-color: #B3C7EF;
+     content: "subtitle: ";
+}
+titleInfo:first-child > title {
+    background-color: #B3C7EF;
+     content: "title: ";
+}
+namePart[type='family'] {
+    content: 'family name: ';
+}
+namePart[type='given'] {
+    content: 'given name: ';
+}
+namePart[type='date'] {
+    content: 'dates: ';
+}
+dateCreated {
+    content: 'date created: ';
+}
+publisher {
+    content: 'publisher: ';
+    background-color: #FFE7DF;
+}
+note{
+    content: 'note: ';
+    background-color: #FFF;
+}

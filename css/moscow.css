@@ -1,0 +1,163 @@
+/* ******************************************************
+Styles for pudl0125.
+Associate with MODS document(s) while in Text view,
+open in oXygen Author view.
+pmg
+from 20140317
+********************************************************/
+
+/* global */
+* {
+    display: block;
+ }
+ mods {
+    background-color: #EFEFEF;
+    margin:0px;
+ }
+/* fields to be removed from display */
+accessCondition,
+classification,
+languageTerm,
+language,
+location,
+recordContentSource,
+recordInfo,
+relatedItem,
+shelfLocator,
+subject,
+subLocation,
+typeOfResource {
+    display: none;
+}
+/* fields to be edited */
+dateCreated,
+dateIssued,
+genre,
+partNumber,
+identifier[type],
+namePart,
+physicalDescription,
+place,
+publisher,
+roleTerm,
+subject,
+subTitle,
+title,
+note {
+    display: block;
+    margin: .5em;
+    font-size: 1em;
+    border: 2px inset #FFCC66;
+    color: #666;
+    background-color: #E8EEFA;
+    width: 450px;
+    border:1px solid #333;
+    padding:5px;
+}
+/* background colors and text */
+mods {
+   content:"Moscow Mayoral Election Ephemera [pudl0125]"
+}
+name[script="Cyrl"] {
+    border:1px dotted #000;
+    width:10%;
+    margin:10px;
+    padding:5px;
+    content:'name (rus):';
+}
+name {
+    border:1px dotted #000;
+    width:10%;
+    margin:10px;
+    padding:5px;
+    content:'name:';
+}
+namePart, roleTerm {
+   background-color: #FFEEBF;  
+}
+placeTerm {
+    background-color: #D1EFD8;
+    content: 'origin: ';
+}
+dateIssued {
+    background-color: #D1EFD8;
+    content: 'date issued: ';
+}
+/*languageTerm {
+    content: 'language: ';
+    background-color: #FFFFCF;
+}*/
+title {
+    content: 'title: ';
+}
+subTitle {
+    content: 'other subtitle: ';
+}
+/* hide all but first subject; oXygen 14.2 does not support nth-child or :not */
+subject[altRepGroup] + subject + subject {
+    display:none;
+}
+subject[altRepGroup] + subject + subject + subject {
+    display:none;
+}
+subject[altRepGroup] + subject + subject + subject + subject {
+    display:none;
+}
+/* this can also be name:first-child */
+subject > name[authority="naf"] {
+    padding: 5px;
+    content: 'subject:';
+}
+subject > name[authority="local"] {
+    padding: 5px;
+    content: 'subject (rus):';
+}
+titleInfo:first-child > subTitle {
+    background-color: #B3C7EF;
+    content: 'subtitle: ';
+}
+titleInfo:first-child > title {
+    background-color: #B3C7EF;
+    content: 'title: ';
+}
+extent {
+    background-color: #FFF;
+    content: "physical description: ";
+}
+namePart[type='family'] {
+    content: 'family name: ';
+}
+namePart[type='given'] {
+    content: 'given name: ';
+}
+namePart[type='date'] {
+    content: 'date: ';
+}
+dateCreated {
+    content: 'date created: ';
+}
+roleTerm {
+    content: 'role term: '
+}
+publisher {
+    content: 'publisher: ';
+    background-color: #FFE7DF;
+}
+note{
+    content: 'note: ';
+    background-color: #FFF;
+}
+identifier{
+    content: 'identifier: ';
+    background-color: #EEE;
+}
+genre {
+    content: 'genre: ';   
+}
+relatedItem {
+    content: 'related item: ';
+    background-color:#FFF;
+    border:1px dotted #333;
+    padding:5px;
+}
+

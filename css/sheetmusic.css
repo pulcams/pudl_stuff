@@ -1,0 +1,124 @@
+/* ******************************************************
+Styles for pudl0020 review. 02/2013 pg
+Associate with MODS document(s) while in Text view,
+open in oXygen Author view.
+********************************************************/
+
+/* global */
+* {
+    display: block;
+ }
+ mods {
+    background-color: #EFEFEF;
+    margin:0px;
+ }
+/* fields to be removed from display */
+accessCondition,
+classification,
+location,
+location,
+recordContentSource,
+recordInfo,
+role,
+roleTerm,
+shelfLocator,
+subLocation,
+typeOfResource {
+    display: none;
+}
+/* fields to be edited */
+dateCreated,
+dateIssued,
+genre,
+partNumber,
+identifier[type],
+languageTerm,
+namePart,
+physicalDescription,
+place,
+publisher,
+relatedItem,
+subject,
+subTitle,
+title,
+note {
+    display: block;
+    margin: .5em;
+    font-size: 1em;
+    border: 2px inset #FFCC66;
+    color: #666;
+    background-color: #E8EEFA;
+    width: 450px;
+    border:1px solid #333;
+    padding:5px;
+}
+/* background colors and text */
+namePart {
+    background-color: #FFEEBF;
+    content: "corporate name: ";
+    
+}
+placeTerm {
+    background-color: #D1EFD8;
+    content: 'origin: ';
+}
+dateIssued {
+    background-color: #D1EFD8;
+    content: 'date issued: ';
+}
+languageTerm {
+    content: 'language: ';
+    background-color: #FFFFCF;
+}
+title {
+    content: "title: ";
+}
+subTitle {
+    content: "other subtitle: ";
+}
+titleInfo:first-child > subTitle {
+    background-color: #B3C7EF;
+    content: "subtitle: ";
+}
+titleInfo:first-child > title {
+    background-color: #B3C7EF;
+    content: "title: ";
+}
+physicalDescription {
+    background-color: #FFF;
+    content: "physical description: ";
+}
+namePart[type='family'] {
+    content: 'family name: ';
+}
+namePart[type='given'] {
+    content: 'given name: ';
+}
+namePart[type='date'] {
+    content: 'birthdate: ';
+}
+dateCreated {
+    content: 'date created: ';
+}
+publisher {
+    content: 'publisher: ';
+    background-color: #FFE7DF;
+}
+note{
+    content: 'note: ';
+    background-color: #FFF;
+}
+identifier{
+    content: 'identifier: ';
+    background-color: #EEE;
+}
+genre {
+    content: 'genre: ';   
+}
+relatedItem {
+    content: 'related item: ';
+    background-color:#FFF;
+    border:1px dotted #333;
+    padding:5px;
+}
+
