@@ -1,0 +1,23 @@
+xquery version "1.0";
+
+(:~
+ :  XQuery Update to change originInfo in MODS files. 
+ :)
+
+declare namespace mods="http://www.loc.gov/mods/v3";
+declare namespace marc="http://www.loc.gov/MARC21/slim";
+declare namespace mets="http://www.loc.gov/METS/";
+
+declare variable $DIR as xs:string := 'file:///Users/me/test';
+declare variable $TYPE as xs:string := 'mods';
+
+declare variable $FILE as document-node()* := collection(concat($DIR,'?select=*.',$TYPE,';recurse=no;on-error=ignore'))/doc(document-uri(.));
+
+for $origin as element() in $FILE//mods:originInfo
+let $date as element()* := $origin/mods:dateCreated
+return
+if ($date = '1901-2000') then (
+delete node $date,
+insert node <mods:dateCreated encoding="w3cdtf" keyDate="yes" qualifier="approximate" point="start">1901</mods:dateCreated> as last into $origin,
+insert node <mods:dateCreated encoding="w3cdtf" keyDate="yes" qualifier="approximate" point="end">2000</mods:dateCreated> as last into $origin
+) else()
