@@ -1,7 +1,7 @@
 xquery version "1.0";
 
 (:
- :  Template for querying project directories. 
+ :  Get rid of those pesky empty nodes.
  :)
 
 declare namespace mods="http://www.loc.gov/mods/v3";
