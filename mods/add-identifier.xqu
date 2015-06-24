@@ -1,0 +1,31 @@
+xquery version "1.0";
+(:
+ :  Add mods:identifier and mods:relatedItem
+ :)
+
+declare namespace mods="http://www.loc.gov/mods/v3";
+
+declare variable $DIR as xs:string := 'file:///Users/me/Documents/working/pudl0112/';
+declare variable $TYPE as xs:string := 'mods';
+
+declare variable $FILE as document-node()* := collection(concat($DIR,'?select=*.',$TYPE,';recurse=no;on-error=ignore'))/doc(document-uri(.));
+
+for $f in $FILE//*
+let $lastsub := $f//mods:subject[last()]
+let $filename := replace(tokenize(base-uri($f),'/')[last()],'\.mods','')
+return
+if ($lastsub) then (
+    insert node(
+    (<mods:relatedItem type="host">
+      <mods:titleInfo>
+         <mods:title>Islamic Manuscript Collection</mods:title>
+      </mods:titleInfo>
+      <mods:location>
+         <mods:url>http://pudl.princeton.edu/collections/pudl0112</mods:url>
+      </mods:location>
+    </mods:relatedItem>
+   ),(
+    <mods:identifier type="local">{$filename}</mods:identifier>
+   ))
+   after $lastsub
+) else()
