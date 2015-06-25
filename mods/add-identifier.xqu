@@ -4,6 +4,7 @@ xquery version "1.0";
  :)
 
 declare namespace mods="http://www.loc.gov/mods/v3";
+declare default element namespace "http://www.loc.gov/mods/v3";
 
 declare variable $DIR as xs:string := 'file:///Users/me/Documents/working/pudl0112/';
 declare variable $TYPE as xs:string := 'mods';
@@ -16,14 +17,14 @@ let $filename := replace(tokenize(base-uri($f),'/')[last()],'\.mods','')
 return
 if ($lastsub) then (
     insert node(
-    (<mods:relatedItem type="host">
-      <mods:titleInfo>
-         <mods:title>Islamic Manuscript Collection</mods:title>
-      </mods:titleInfo>
-      <mods:location>
-         <mods:url>http://pudl.princeton.edu/collections/pudl0112</mods:url>
-      </mods:location>
-    </mods:relatedItem>
+    (<relatedItem type="host">
+      <titleInfo>
+         <title>Islamic Manuscript Collection</title>
+      </titleInfo>
+      <location>
+         <url>http://pudl.princeton.edu/collections/pudl0112</url>
+      </location>
+    </relatedItem>
    ),(
     <mods:identifier type="local">{$filename}</mods:identifier>
    ))
