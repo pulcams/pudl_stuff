@@ -1,7 +1,7 @@
 pudl stuff
 ==========
 
-Misc. scripts to assist us in loading files into the [pudl](http://pudl.princeton.edu/) (Princeton Univeristy Digital Library).
+Misc. scripts to assist us (CaMS) in loading files into the [pudl](http://pudl.princeton.edu/) (Princeton Univeristy Digital Library).
 
 #### XQuery/XSLT reminders
 * .xqu = XQuery Update. In oXygen, need to disable XQuery 3.0 support to run these (as of 5/15). Be sure to have backups enabled in before running XQuery Updates (Tools > Options > XML > XSLT-FO-XQuery > XQuery > Saxon-HE/PE/EE > "Backup files updated by XQuery...").
