@@ -17,3 +17,9 @@ These are issues that took some time and collaboration to resolve, so recording 
  ```
  $ for m in `find . -name "*.mets"`; do sed -r -e 's|8941435/vol[0-9]{2}\.mets|8941435.mets|' $m; done
  ```
+
+* pudl0058 - need to confirm number of image METS
+```
+$ cd pudl0058
+$ find . -type f -name "*.mets" | wc -l
+```
