@@ -23,3 +23,5 @@ These are issues that took some time and collaboration to resolve, so recording 
 $ cd pudl0058
 $ find . -type f -name "*.mets" | wc -l
 ```
+
+* pudl0003/c83_3828.mets - Image METS were regenerated after changing dir structure. Values in mets:mptr then needed to be changed from `pudl0003.c83_3828.mets` to `pudl0003/c83_3828.mets` in order to generate new Obj METS.
